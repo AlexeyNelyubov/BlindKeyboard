@@ -1,10 +1,10 @@
 <script setup>
-const props = defineProps({
-  result: {
-    type: Boolean,
-    required: true,
-  },
-});
+// const props = defineProps({
+//   result: {
+//     type: Boolean,
+//     required: true,
+//   },
+// });
 </script>
 
 <template>

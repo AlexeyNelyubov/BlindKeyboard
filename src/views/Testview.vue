@@ -1,43 +1,42 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import TestingParams from "/src/components/TestingParams.vue";
 import { useEventListener } from "/src/composable/useEventListener.js";
 
-const props = defineProps({
-  randomText: {
-    type: String,
-    required: true,
-  },
-});
+const DEFAULT_TEXT =
+  "Земля — пятая по величине планета Солнечной системы и единственная, имеющая слой газов в атмосфере, гарантирующий условия для существования здесь жизни. Около 70% поверхности планеты покрыто водой в жидком состоянии, необходимым элементом для существования форм жизни.";
+const randomText = ref("");
+const getRandomTextFromAjax = async () => {
+  try {
+    const response = await fetch(
+      "https://fish-text.ru/get?&tipe=sentence&number=1"
+    );
+    const json = await response.json();
+    if (response.ok) {
+      randomText.value = json.text;
+    } else {
+      console.log(json);
+      randomText.value = DEFAULT_TEXT;
+    }
+  } catch (error) {
+    console.error(error.message);
+    randomText.value = DEFAULT_TEXT;
+  }
+};
 
-const emit = defineEmits(["change-random-text"]);
+getRandomTextFromAjax();
 
 const curentIndex = ref(0);
 const isCurentItemValid = ref(true);
 const colorForValidateSymbol = ref("#fff");
 const isFinishTest = ref(false);
 
-watch(
-  () => props.randomText,
-  () => {
-    location.reload();
-  }
-);
-
-const ChangeRandomText = () => {
-  // curentIndex.value = ref(0);
-  // isCurentItemValid.value = ref(true);
-  // colorForValidateSymbol.value = ref("#fff");
-  // isFinishTest.value = ref(false);
-  emit("change-random-text");
-};
-
 useEventListener(document, "keypress", (event) => {
-  if (curentIndex.value + 1 === props.randomText.length) {
+  if (curentIndex.value + 1 === randomText.value.length) {
     isFinishTest.value = true;
     alert("Тест завершён");
   }
-  if (event.key === props.randomText[curentIndex.value]) {
+  if (event.key === randomText.value[curentIndex.value]) {
     isCurentItemValid.value = true;
     curentIndex.value += 1;
     colorForValidateSymbol.value = "#fff";
@@ -46,6 +45,10 @@ useEventListener(document, "keypress", (event) => {
     colorForValidateSymbol.value = "#ff0000";
   }
 });
+
+const changeRandomText = () => {
+  window.location.reload();
+};
 </script>
 
 <template>
@@ -54,7 +57,7 @@ useEventListener(document, "keypress", (event) => {
     <main class="test__main">
       <div class="test__main-random-text" ref="widthRandomText">
         <span
-          v-for="(symbol, index) of props.randomText"
+          v-for="(symbol, index) of randomText"
           :key="symbol.id"
           :class="{
             validSymbol: isCurentItemValid && index === curentIndex,
@@ -68,12 +71,12 @@ useEventListener(document, "keypress", (event) => {
       </div>
       <TestingParams
         class="test__main-params"
-        @change-random-text="ChangeRandomText"
+        @change-random-text="changeRandomText"
       />
     </main>
   </div>
 </template>
-<!-- @change-random-text="$emit('change-random-text')" -->
+
 <style>
 .test {
   display: flex;
