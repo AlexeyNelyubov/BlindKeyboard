@@ -1,11 +1,10 @@
 <script setup>
 import { ref, watch, computed } from "vue";
+import { useTestingParamsStore } from "/src/stores/testingParams.js";
+
+const testingParamsStore = useTestingParamsStore();
 
 const props = defineProps({
-  isFinishTest: {
-    type: Boolean,
-    required: true,
-  },
   numderOfCheckedSymbols: {
     type: Number,
     required: true,
@@ -16,14 +15,32 @@ const props = defineProps({
   },
 });
 
-defineEmits(["change-random-text"]);
+const emit = defineEmits(["change-random-text", "change-time"]);
 
 const testingTime = ref(0);
+const minutes = ref("00");
+const seconds = ref("00");
 
 const timer = () => {
-  if (!props.isFinishTest) {
+  if (!testingParamsStore.isFinishTesting) {
     setTimeout(() => {
       testingTime.value += 1;
+      if (testingTime.value < 10) {
+        seconds.value = "0" + testingTime.value;
+      } else if (testingTime.value < 60) {
+        seconds.value = testingTime.value;
+      }
+      if (testingTime.value / 60 >= 1) {
+        minutes.value = "0" + Math.trunc(testingTime.value / 60);
+        if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
+          seconds.value =
+            "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
+        } else {
+          seconds.value =
+            testingTime.value - Math.trunc(testingTime.value / 60) * 60;
+        }
+      }
+      emit("change-time", minutes.value, seconds.value);
       timer();
     }, 1000);
   }
@@ -48,28 +65,32 @@ const accuracy = computed(() => {
       : 100
     : 0;
 });
+
+watch([speed, accuracy], () => {
+  testingParamsStore.changeTestingParams(speed.value, accuracy.value);
+});
 </script>
 
 <template>
-  <div class="testing-params">
+  <div class="test-testing-params">
     <div>
-      <p class="testing-params__item">Скорость</p>
-      <p class="testing-params__item-value">
+      <p class="test-testing-params__item">Скорость</p>
+      <p class="test-testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>
-      <p class="testing-params__item">Точность</p>
-      <p class="testing-params__item-value">
+      <p class="test-testing-params__item">Точность</p>
+      <p class="test-testing-params__item-value">
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <button class="new-test-button" @click="$emit('change-random-text')">
+    <button class="test-new-test-button" @click="$emit('change-random-text')">
       Заново!
     </button>
   </div>
 </template>
 
 <style>
-.testing-params {
+.test-testing-params {
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -78,19 +99,19 @@ const accuracy = computed(() => {
   text-align: justify;
 }
 
-.testing-params__item {
+.test-testing-params__item {
   margin-bottom: 12px;
   font: 2em Times New Roman;
   color: #fff;
 }
 
-.testing-params__item-value {
+.test-testing-params__item-value {
   margin-bottom: 44px;
   font: 2.5em Times New Roman;
   color: #fff;
 }
 
-.new-test-button {
+.test-new-test-button {
   padding: 8px 40px;
   font: 1.5rem cursive;
   color: #7b7b7b;

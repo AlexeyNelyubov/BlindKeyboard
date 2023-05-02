@@ -1,15 +1,20 @@
 <script setup>
 import { ref } from "vue";
-import TestingParams from "/src/components/TestingParams.vue";
+import { useRouter } from "vue-router";
+import TestingParams from "/src/components/TestPage/TestingParams.vue";
 import { useEventListener } from "/src/composable/useEventListener.js";
+import { useTestingParamsStore } from "/src/stores/testingParams.js";
 
+const testingParamsStore = useTestingParamsStore();
+
+const router = useRouter();
 const DEFAULT_TEXT =
   "Земля — пятая по величине планета Солнечной системы и единственная, имеющая слой газов в атмосфере, гарантирующий условия для существования здесь жизни. Около 70% поверхности планеты покрыто водой в жидком состоянии, необходимым элементом для существования форм жизни.";
 const randomText = ref("");
 const getRandomTextFromAjax = async () => {
   try {
     const response = await fetch(
-      "https://fish-text.ru/get?&tipe=sentence&number=1"
+      "https://fish-text.ru/get?&tipe=sentence&number=2"
     );
     const json = await response.json();
     if (response.ok) {
@@ -30,7 +35,8 @@ const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
-const isFinishTest = ref(false);
+const minutes = ref("00");
+const seconds = ref("00");
 
 useEventListener(document, "keypress", (event) => {
   if (event.key === randomText.value[curentIndex.value]) {
@@ -38,8 +44,8 @@ useEventListener(document, "keypress", (event) => {
     curentIndex.value += 1;
     colorForValidateSymbol.value = "#fff";
     if (curentIndex.value === randomText.value.length) {
-      isFinishTest.value = true;
-      alert("Тест завершён");
+      testingParamsStore.isFinishTesting = true;
+      router.push({ name: "home" });
     }
   } else {
     isCurentSymbolValid.value = false;
@@ -55,9 +61,9 @@ const changeRandomText = () => {
 
 <template>
   <div class="test">
-    <header class="test__header">Тест на скорость печати!</header>
+    <div class="test__time">Время {{ minutes }}:{{ seconds }}</div>
     <main class="test__main">
-      <div class="test__main-random-text" ref="widthRandomText">
+      <div class="test__main-random-text">
         <span
           v-for="(symbol, index) of randomText"
           :key="symbol.id"
@@ -73,10 +79,14 @@ const changeRandomText = () => {
       </div>
       <TestingParams
         class="test__main-params"
-        :isFinishTest="isFinishTest"
         :numderOfCheckedSymbols="curentIndex"
         :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
         @change-random-text="changeRandomText"
+        @change-time="
+          (newMinutes, newSeconds) => {
+            (minutes = newMinutes), (seconds = newSeconds);
+          }
+        "
       />
     </main>
   </div>
@@ -88,10 +98,19 @@ const changeRandomText = () => {
   flex-direction: column;
   align-items: center;
 }
-.test__header {
+
+.test__time {
+  height: 100px;
+  width: 300px;
   margin: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font: 2rem cursive;
   color: #fff;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #fff;
 }
 
 .test__main {
@@ -100,7 +119,7 @@ const changeRandomText = () => {
 }
 
 .test__main-random-text {
-  width: 45%;
+  width: 824px;
   padding: 24px;
   font: 2rem Times New Roman;
   border: 1px solid v-bind(colorForValidateSymbol);
@@ -125,7 +144,7 @@ const changeRandomText = () => {
 }
 
 .test__main-params {
-  width: 15%;
+  width: 224px;
   margin-left: 24px;
   border: 1px solid #fff;
   border-radius: 12px;
