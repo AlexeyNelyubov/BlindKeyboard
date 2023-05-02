@@ -1,16 +1,46 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+
+const props = defineProps({
+  numerOfSymbolsInRandomText: {
+    type: Number,
+    required: true,
+  },
+  numderOfCheckedSymbols: {
+    type: Number,
+    required: true,
+  },
+  numberOfUnvalidSymbols: {
+    type: Number,
+    required: true,
+  },
+});
 
 defineEmits(["change-random-text"]);
 
 const speed = ref(0);
-const accuracy = ref(100);
+
+const accuracy = computed(() => {
+  return props.numderOfCheckedSymbols
+    ? props.numberOfUnvalidSymbols
+      ? 100 -
+        Math.trunc(
+          (props.numberOfUnvalidSymbols /
+            (props.numberOfUnvalidSymbols + props.numderOfCheckedSymbols)) *
+            100
+        )
+      : 100
+    : 0;
+});
 </script>
 
 <template>
   <div class="testing-params">
     <div>
       <p class="testing-params__item">Скорость</p>
+      {{ props.numerOfSymbolsInRandomText }}
+      {{ props.numderOfCheckedSymbols }}
+      {{ props.numberOfUnvalidSymbols }}
       <p class="testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>

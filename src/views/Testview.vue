@@ -27,7 +27,8 @@ const getRandomTextFromAjax = async () => {
 getRandomTextFromAjax();
 
 const curentIndex = ref(0);
-const isCurentItemValid = ref(true);
+const isCurentSymbolValid = ref(true);
+const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
 const isFinishTest = ref(false);
 
@@ -37,11 +38,12 @@ useEventListener(document, "keypress", (event) => {
     alert("Тест завершён");
   }
   if (event.key === randomText.value[curentIndex.value]) {
-    isCurentItemValid.value = true;
+    isCurentSymbolValid.value = true;
     curentIndex.value += 1;
     colorForValidateSymbol.value = "#fff";
   } else {
-    isCurentItemValid.value = false;
+    isCurentSymbolValid.value = false;
+    numberOfUnvalidSymbols.value += 1;
     colorForValidateSymbol.value = "#ff0000";
   }
 });
@@ -60,8 +62,8 @@ const changeRandomText = () => {
           v-for="(symbol, index) of randomText"
           :key="symbol.id"
           :class="{
-            validSymbol: isCurentItemValid && index === curentIndex,
-            unvalidSymbol: !isCurentItemValid && index === curentIndex,
+            validSymbol: isCurentSymbolValid && index === curentIndex,
+            unvalidSymbol: !isCurentSymbolValid && index === curentIndex,
             uncheckedSymbol: index > curentIndex,
             checkedSymbol: index < curentIndex,
           }"
@@ -71,6 +73,9 @@ const changeRandomText = () => {
       </div>
       <TestingParams
         class="test__main-params"
+        :numerOfSymbolsInRandomText="randomText.length"
+        :numderOfCheckedSymbols="curentIndex"
+        :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
         @change-random-text="changeRandomText"
       />
     </main>
