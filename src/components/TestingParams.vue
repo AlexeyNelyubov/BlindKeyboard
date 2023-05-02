@@ -1,9 +1,9 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, watch, computed } from "vue";
 
 const props = defineProps({
-  numerOfSymbolsInRandomText: {
-    type: Number,
+  isFinishTest: {
+    type: Boolean,
     required: true,
   },
   numderOfCheckedSymbols: {
@@ -18,7 +18,23 @@ const props = defineProps({
 
 defineEmits(["change-random-text"]);
 
-const speed = ref(0);
+const testingTime = ref(0);
+
+const timer = () => {
+  if (!props.isFinishTest) {
+    setTimeout(() => {
+      testingTime.value += 1;
+      timer();
+    }, 1000);
+  }
+};
+timer();
+
+const speed = computed(() => {
+  return testingTime.value
+    ? Math.trunc((props.numderOfCheckedSymbols / testingTime.value) * 60)
+    : 0;
+});
 
 const accuracy = computed(() => {
   return props.numderOfCheckedSymbols
@@ -38,9 +54,6 @@ const accuracy = computed(() => {
   <div class="testing-params">
     <div>
       <p class="testing-params__item">Скорость</p>
-      {{ props.numerOfSymbolsInRandomText }}
-      {{ props.numderOfCheckedSymbols }}
-      {{ props.numberOfUnvalidSymbols }}
       <p class="testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>
@@ -72,7 +85,7 @@ const accuracy = computed(() => {
 }
 
 .testing-params__item-value {
-  margin-bottom: 32px;
+  margin-bottom: 44px;
   font: 2.5em Times New Roman;
   color: #fff;
 }

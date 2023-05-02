@@ -33,14 +33,14 @@ const colorForValidateSymbol = ref("#fff");
 const isFinishTest = ref(false);
 
 useEventListener(document, "keypress", (event) => {
-  if (curentIndex.value + 1 === randomText.value.length) {
-    isFinishTest.value = true;
-    alert("Тест завершён");
-  }
   if (event.key === randomText.value[curentIndex.value]) {
     isCurentSymbolValid.value = true;
     curentIndex.value += 1;
     colorForValidateSymbol.value = "#fff";
+    if (curentIndex.value === randomText.value.length) {
+      isFinishTest.value = true;
+      alert("Тест завершён");
+    }
   } else {
     isCurentSymbolValid.value = false;
     numberOfUnvalidSymbols.value += 1;
@@ -73,7 +73,7 @@ const changeRandomText = () => {
       </div>
       <TestingParams
         class="test__main-params"
-        :numerOfSymbolsInRandomText="randomText.length"
+        :isFinishTest="isFinishTest"
         :numderOfCheckedSymbols="curentIndex"
         :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
         @change-random-text="changeRandomText"
