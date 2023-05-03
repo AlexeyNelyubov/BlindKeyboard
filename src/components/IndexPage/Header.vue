@@ -21,7 +21,7 @@ if (testingParamsStore.isFinishTesting) {
 
 <style>
 .index-header {
-  margin: 64px;
+  margin: 116px 0 72px 0;
   font: 2rem cursive;
   color: #fff;
 }

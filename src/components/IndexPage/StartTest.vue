@@ -10,7 +10,7 @@ const textForButton = ref("");
 
 if (testingParamsStore.isFinishTesting) {
   textForButton.value = "Попробовать ещё!";
-  testingParamsStore.updatetestingParamsStore();
+  testingParamsStore.updateTestingParamsStore();
 } else {
   textForButton.value = "Начать тест!";
 }

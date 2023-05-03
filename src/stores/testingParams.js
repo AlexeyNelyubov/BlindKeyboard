@@ -12,11 +12,11 @@ export const useTestingParamsStore = defineStore('testingParams', () => {
     speed.value = newSpeed;
     accuracy.value = newAccuracy;
   }
-  const  updatetestingParamsStore = ()=> {
+  const  updateTestingParamsStore = ()=> {
     isFinishTesting.value = false;
     speed.value = 0;
     accuracy.value = 0;
   }
 
-  return { isFinishTesting, speed, accuracy, finishTesting, changeTestingParams, updatetestingParamsStore}
+  return { isFinishTesting, speed, accuracy, finishTesting, changeTestingParams, updateTestingParamsStore}
 })
