@@ -4,7 +4,16 @@ import { useTestingParamsStore } from "/src/stores/testingParams.js";
 
 const testingParamsStore = useTestingParamsStore();
 
-const emit = defineEmits(["change-time"]);
+const emit = defineEmits({
+  "change-time": (newTestingTime) => {
+    if (typeof newTestingTime === "number") {
+      return true;
+    } else {
+      console.warn("Invalid change-time event payload!");
+      return false;
+    }
+  },
+});
 
 const testingTime = ref(0);
 const minutes = ref("00");

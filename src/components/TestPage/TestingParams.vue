@@ -1,10 +1,14 @@
 <script setup>
-import { ref, watch, computed } from "vue";
+import { watch, computed } from "vue";
 import { useTestingParamsStore } from "/src/stores/testingParams.js";
 
 const testingParamsStore = useTestingParamsStore();
 
 const props = defineProps({
+  testingTime: {
+    type: Number,
+    required: true,
+  },
   numderOfCheckedSymbols: {
     type: Number,
     required: true,
@@ -15,41 +19,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["change-random-text", "change-time"]);
-
-const testingTime = ref(0);
-const minutes = ref("00");
-const seconds = ref("00");
-
-const timer = () => {
-  if (!testingParamsStore.isFinishTesting) {
-    setTimeout(() => {
-      testingTime.value += 1;
-      if (testingTime.value < 10) {
-        seconds.value = "0" + testingTime.value;
-      } else if (testingTime.value < 60) {
-        seconds.value = testingTime.value;
-      }
-      if (testingTime.value / 60 >= 1) {
-        minutes.value = "0" + Math.trunc(testingTime.value / 60);
-        if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
-          seconds.value =
-            "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
-        } else {
-          seconds.value =
-            testingTime.value - Math.trunc(testingTime.value / 60) * 60;
-        }
-      }
-      emit("change-time", minutes.value, seconds.value);
-      timer();
-    }, 1000);
-  }
-};
-timer();
+defineEmits(["change-random-text"]);
 
 const speed = computed(() => {
-  return testingTime.value
-    ? Math.trunc((props.numderOfCheckedSymbols / testingTime.value) * 60)
+  return props.testingTime
+    ? Math.trunc((props.numderOfCheckedSymbols / props.testingTime) * 60)
     : 0;
 });
 
