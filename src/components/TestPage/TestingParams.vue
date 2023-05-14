@@ -19,7 +19,7 @@ const props = defineProps({
   },
 });
 
-defineEmits(["start-new-test"]);
+const emit = defineEmits(["start-new-test"]);
 
 const speed = computed(() => {
   return props.testingTime
@@ -43,6 +43,12 @@ const accuracy = computed(() => {
 watch([speed, accuracy], () => {
   testingParamsStore.changeTestingParams(speed.value, accuracy.value);
 });
+
+const clickB = () => {
+  const btn = document.querySelector(".test-new-test-button");
+  btn.blur();
+  emit("start-new-test");
+};
 </script>
 
 <template>
@@ -57,9 +63,8 @@ watch([speed, accuracy], () => {
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <button class="test-new-test-button" @click="$emit('start-new-test')">
-      Заново!
-    </button>
+    <!-- <button class="test-new-test-button" @click="$emit('start-new-test')"> -->
+    <button class="test-new-test-button" @click="clickB">Заново!</button>
   </div>
 </template>
 

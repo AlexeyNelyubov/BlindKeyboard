@@ -17,18 +17,17 @@ const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
 const testingTime = ref(0);
+const isNewTest = ref(true);
 
 const startNewTest = async () => {
   randomText.value = await getRandomTextFromAjax();
-  // (async () => {
-  //
-  // })();
-
+  isNewTest.value = true;
   curentIndex.value = 0;
   isCurentSymbolValid.value = true;
   numberOfUnvalidSymbols.value = 0;
   colorForValidateSymbol.value = "#fff";
   testingTime.value = 0;
+  console.log("1");
 };
 
 startNewTest();
@@ -48,15 +47,18 @@ useEventListener(document, "keypress", (event) => {
     colorForValidateSymbol.value = "#ff0000";
   }
 });
-
-// const changeRandomText = () => {
-//   // window.location.reload();
-// };
 </script>
 
 <template>
   <div class="test">
-    <Timer @change-time="(newTestingTime) => (testingTime = newTestingTime)" />
+    <Timer
+      :isNewTest="isNewTest"
+      @change-time="
+        (newTestingTime) => {
+          (testingTime = newTestingTime), (isNewTest = false);
+        }
+      "
+    />
     <main class="test__main">
       <div class="test__main-random-text">
         <span

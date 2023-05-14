@@ -1,8 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useTestingParamsStore } from "/src/stores/testingParams.js";
 
 const testingParamsStore = useTestingParamsStore();
+
+const props = defineProps({
+  isNewTest: {
+    type: Boolean,
+    required: true,
+  },
+});
 
 const emit = defineEmits({
   "change-time": (newTestingTime) => {
@@ -18,6 +25,17 @@ const emit = defineEmits({
 const testingTime = ref(0);
 const minutes = ref("00");
 const seconds = ref("00");
+
+watch(
+  () => props.isNewTest,
+  () => {
+    if (props.isNewTest) {
+      testingTime.value = 0;
+      minutes.value = "00";
+      seconds.value = "00";
+    }
+  }
+);
 
 const timer = () => {
   if (!testingParamsStore.isFinishTesting) {
