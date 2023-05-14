@@ -12,16 +12,26 @@ const testingParamsStore = useTestingParamsStore();
 const router = useRouter();
 
 const randomText = ref("");
-
-(async () => {
-  randomText.value = await getRandomTextFromAjax();
-})();
-
 const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
 const testingTime = ref(0);
+
+const startNewTest = async () => {
+  randomText.value = await getRandomTextFromAjax();
+  // (async () => {
+  //
+  // })();
+
+  curentIndex.value = 0;
+  isCurentSymbolValid.value = true;
+  numberOfUnvalidSymbols.value = 0;
+  colorForValidateSymbol.value = "#fff";
+  testingTime.value = 0;
+};
+
+startNewTest();
 
 useEventListener(document, "keypress", (event) => {
   if (event.key === randomText.value[curentIndex.value]) {
@@ -39,9 +49,9 @@ useEventListener(document, "keypress", (event) => {
   }
 });
 
-const changeRandomText = () => {
-  window.location.reload();
-};
+// const changeRandomText = () => {
+//   // window.location.reload();
+// };
 </script>
 
 <template>
@@ -68,7 +78,7 @@ const changeRandomText = () => {
         :testingTime="testingTime"
         :numderOfCheckedSymbols="curentIndex"
         :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
-        @change-random-text="changeRandomText"
+        @start-new-test="startNewTest"
       />
     </main>
   </div>
@@ -94,11 +104,6 @@ const changeRandomText = () => {
   border-radius: 12px;
   box-shadow: 0 0 20px v-bind(colorForValidateSymbol);
 }
-
-/* spaceSymbol: symbol === ' ',
-.spaceSymbol {
-  background-color: #0015ff;
-} */
 
 .validSymbol {
   background-color: #37ff00;

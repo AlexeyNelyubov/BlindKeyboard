@@ -19,7 +19,7 @@ const props = defineProps({
   },
 });
 
-defineEmits(["change-random-text"]);
+defineEmits(["start-new-test"]);
 
 const speed = computed(() => {
   return props.testingTime
@@ -57,7 +57,7 @@ watch([speed, accuracy], () => {
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <button class="test-new-test-button" @click="$emit('change-random-text')">
+    <button class="test-new-test-button" @click="$emit('start-new-test')">
       Заново!
     </button>
   </div>
