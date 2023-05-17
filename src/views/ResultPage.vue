@@ -1,26 +1,31 @@
 <script setup>
-import { useRouter } from "vue-router";
-import Header from "/src/components/IndexPage/Header.vue";
-import Information from "/src/components/IndexPage/Information.vue";
-import StartTest from "/src/components/IndexPage/StartTest.vue";
+import { useRouter, useRoute } from "vue-router";
+import Header from "/src/components/StartResultPage/Header.vue";
+import Information from "/src/components/StartResultPage/Information.vue";
+import StartTest from "/src/components/StartResultPage/StartTestButton.vue";
 
 const router = useRouter();
-
-const beginTest = () => {
-  router.push({ name: "Test" });
-};
+const route = useRoute();
 </script>
 
 <template>
-  <div class="index">
-    <Header />
-    <Information />
-    <StartTest @start-test="beginTest" />
+  <div class="result">
+    <Header :textForHeader="'Результаты теста!'" />
+    <Information
+      :textForShow="[
+        `Скорость печати составила: ${route.query.speed} зн./мин`,
+        `Точность печати составила: ${route.query.accuracy} %`,
+      ]"
+    />
+    <StartTest
+      @start-new-test="router.push({ name: 'test' })"
+      :textForButton="'Попробовать ещё!'"
+    />
   </div>
 </template>
 
 <style>
-.index {
+.result {
   display: flex;
   flex-direction: column;
   align-items: center;

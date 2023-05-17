@@ -1,5 +1,5 @@
 <script setup>
-import { watch, computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { useTestingParamsStore } from "/src/stores/testingParams.js";
 
 const testingParamsStore = useTestingParamsStore();
@@ -19,7 +19,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["start-new-test"]);
+const emit = defineEmits(["start-new-test", "change-testing-params"]);
 
 const speed = computed(() => {
   return props.testingTime
@@ -41,10 +41,11 @@ const accuracy = computed(() => {
 });
 
 watch([speed, accuracy], () => {
+  emit("change-testing-params", speed.value, accuracy.value);
   testingParamsStore.changeTestingParams(speed.value, accuracy.value);
 });
 
-const clickB = () => {
+const startNewTest = () => {
   const btn = document.querySelector(".test-new-test-button");
   btn.blur();
   emit("start-new-test");
@@ -52,24 +53,29 @@ const clickB = () => {
 </script>
 
 <template>
-  <div class="test-testing-params">
+  <div class="test-main-testing-params">
     <div>
-      <p class="test-testing-params__item">Скорость</p>
-      <p class="test-testing-params__item-value">
+      <p class="test-main-testing-params__item">Скорость</p>
+      <p class="test-main-testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>
-      <p class="test-testing-params__item">Точность</p>
-      <p class="test-testing-params__item-value">
+      <p class="test-main-testing-params__item">Точность</p>
+      <p class="test-main-testing-params__item-value">
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <!-- <button class="test-new-test-button" @click="$emit('start-new-test')"> -->
-    <button class="test-new-test-button" @click="clickB">Заново!</button>
+    <button class="test-main-new-test-button" @click="startNewTest">
+      Заново!
+    </button>
   </div>
 </template>
 
 <style>
-.test-testing-params {
+.test-main-testing-params {
+  margin-left: 24px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #fff;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -78,19 +84,19 @@ const clickB = () => {
   text-align: justify;
 }
 
-.test-testing-params__item {
+.test-main-testing-params__item {
   margin-bottom: 12px;
-  font: 2em Times New Roman;
+  font: 2rem Times New Roman;
   color: #fff;
 }
 
-.test-testing-params__item-value {
+.test-main-testing-params__item-value {
   margin-bottom: 44px;
-  font: 2.5em Times New Roman;
+  font: 2rem Times New Roman;
   color: #fff;
 }
 
-.test-new-test-button {
+.test-main-new-test-button {
   padding: 8px 40px;
   font: 1.5rem cursive;
   color: #7b7b7b;

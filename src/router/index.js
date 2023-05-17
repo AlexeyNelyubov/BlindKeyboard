@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexPage from '../views/IndexPage.vue'
 const TestPage  = () => import("/src/views/TestPage.vue");
+const ResultPage  = () => import("/src/views/ResultPage.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,8 +13,13 @@ const router = createRouter({
     },
     {
       path: "/test",
-      name: "Test",
+      name: "test",
       component: TestPage,
+    },
+    {
+      path: "/result",
+      name: "result",
+      component: ResultPage,
     },
   ]
 })

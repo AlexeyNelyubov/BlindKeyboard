@@ -1,8 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
-import { useTestingParamsStore } from "/src/stores/testingParams.js";
-
-const testingParamsStore = useTestingParamsStore();
+import { ref, watch, onUnmounted } from "vue";
 
 const props = defineProps({
   isNewTest: {
@@ -37,37 +34,60 @@ watch(
   }
 );
 
-const timer = () => {
-  if (!testingParamsStore.isFinishTesting) {
-    setTimeout(() => {
-      testingTime.value += 1;
-      if (testingTime.value < 10) {
-        seconds.value = "0" + testingTime.value;
-      } else if (testingTime.value < 60) {
-        seconds.value = testingTime.value;
-      }
-      if (testingTime.value / 60 >= 1) {
-        minutes.value = "0" + Math.trunc(testingTime.value / 60);
-        if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
-          seconds.value =
-            "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
-        } else {
-          seconds.value =
-            testingTime.value - Math.trunc(testingTime.value / 60) * 60;
-        }
-      }
-      emit("change-time", testingTime.value);
-      timer();
-    }, 1000);
+const timer = setInterval(() => {
+  testingTime.value += 1;
+  if (testingTime.value < 10) {
+    seconds.value = "0" + testingTime.value;
+  } else if (testingTime.value < 60) {
+    seconds.value = testingTime.value;
   }
-};
-timer();
+  if (testingTime.value / 60 >= 1) {
+    minutes.value = "0" + Math.trunc(testingTime.value / 60);
+    if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
+      seconds.value =
+        "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
+    } else {
+      seconds.value =
+        testingTime.value - Math.trunc(testingTime.value / 60) * 60;
+    }
+  }
+  emit("change-time", testingTime.value);
+  console.log(testingTime.value);
+}, 1000);
+
+onUnmounted(() => clearInterval(timer));
+
+// const timer = () => {
+//   if (!props.isTestFinished) {
+//     setTimeout(() => {
+//       testingTime.value += 1;
+//       if (testingTime.value < 10) {
+//         seconds.value = "0" + testingTime.value;
+//       } else if (testingTime.value < 60) {
+//         seconds.value = testingTime.value;
+//       }
+//       if (testingTime.value / 60 >= 1) {
+//         minutes.value = "0" + Math.trunc(testingTime.value / 60);
+//         if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
+//           seconds.value =
+//             "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
+//         } else {
+//           seconds.value =
+//             testingTime.value - Math.trunc(testingTime.value / 60) * 60;
+//         }
+//       }
+//       emit("change-time", testingTime.value);
+//       console.log(testingTime.value);
+//       timer();
+//     }, 1000);
+//   }
+// };
 </script>
 
 <template>
   <div class="test-timer">
     <span>Время</span>
-    <div style="margin-left: 12px; width: 38px">{{ minutes }}</div>
+    <div style="margin-left: 10px; width: 30px">{{ minutes }}</div>
     <span>:</span>
     <div style="width: 38px">{{ seconds }}</div>
   </div>
@@ -75,13 +95,12 @@ timer();
 
 <style>
 .test-timer {
-  height: 100px;
-  width: 300px;
-  margin: 64px;
+  padding: 16px 32px;
+  margin-bottom: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 2rem cursive;
+  font: 1.5rem cursive;
   color: #fff;
   border: 1px solid #fff;
   border-radius: 12px;
