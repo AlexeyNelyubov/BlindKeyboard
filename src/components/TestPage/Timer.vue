@@ -52,7 +52,6 @@ const timer = setInterval(() => {
     }
   }
   emit("change-time", testingTime.value);
-  console.log(testingTime.value);
 }, 1000);
 
 onUnmounted(() => clearInterval(timer));

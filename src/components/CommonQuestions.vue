@@ -24,7 +24,6 @@ const allQuestions1 = [
 ];
 
 useEventListener(document, "click", (event) => {
-  console.log(event.target.className);
   if (
     event.target.className === "index" ||
     event.target.className === "result" ||
