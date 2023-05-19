@@ -1,8 +1,5 @@
 <script setup>
-import { ref, watch, computed } from "vue";
-import { useTestingParamsStore } from "/src/stores/testingParams.js";
-
-const testingParamsStore = useTestingParamsStore();
+import { watch, computed } from "vue";
 
 const props = defineProps({
   testingTime: {
@@ -19,7 +16,17 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["start-new-test", "change-testing-params"]);
+const emit = defineEmits({
+  "start-new-test": null,
+  "change-testing-params": (speed, accuracy) => {
+    if (typeof speed === "number" && typeof accuracy === "number") {
+      return true;
+    } else {
+      console.warn("Invalid change-time event payload!");
+      return false;
+    }
+  },
+});
 
 const speed = computed(() => {
   return props.testingTime
@@ -42,11 +49,10 @@ const accuracy = computed(() => {
 
 watch([speed, accuracy], () => {
   emit("change-testing-params", speed.value, accuracy.value);
-  testingParamsStore.changeTestingParams(speed.value, accuracy.value);
 });
 
 const startNewTest = () => {
-  const btn = document.querySelector(".test-new-test-button");
+  const btn = document.querySelector(".test-main-new-test-button");
   btn.blur();
   emit("start-new-test");
 };

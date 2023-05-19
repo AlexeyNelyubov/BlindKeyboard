@@ -6,7 +6,7 @@ const props = defineProps({
   },
 });
 
-defineEmits(["start-new-test"]);
+defineEmits({ "start-new-test": null });
 </script>
 
 <template>

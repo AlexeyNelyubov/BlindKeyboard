@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter, useRoute } from "vue-router";
+import CommonQuestions from "/src/components/CommonQuestions.vue";
 import Header from "/src/components/StartResultPage/Header.vue";
 import Information from "/src/components/StartResultPage/Information.vue";
 import StartTest from "/src/components/StartResultPage/StartTestButton.vue";
@@ -21,11 +22,14 @@ const route = useRoute();
       @start-new-test="router.push({ name: 'test' })"
       :textForButton="'Попробовать ещё!'"
     />
+    <CommonQuestions />
   </div>
 </template>
 
 <style>
 .result {
+  min-height: 100vh;
+  padding: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;

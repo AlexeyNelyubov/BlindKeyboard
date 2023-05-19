@@ -10,9 +10,6 @@ import { RouterView } from "vue-router";
 
 <style>
 .app-main {
-  width: 100vw;
-  height: 100vh;
-  padding: 8vmin;
   background-color: #000;
 }
 </style>

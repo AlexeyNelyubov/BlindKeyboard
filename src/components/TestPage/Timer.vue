@@ -56,32 +56,6 @@ const timer = setInterval(() => {
 }, 1000);
 
 onUnmounted(() => clearInterval(timer));
-
-// const timer = () => {
-//   if (!props.isTestFinished) {
-//     setTimeout(() => {
-//       testingTime.value += 1;
-//       if (testingTime.value < 10) {
-//         seconds.value = "0" + testingTime.value;
-//       } else if (testingTime.value < 60) {
-//         seconds.value = testingTime.value;
-//       }
-//       if (testingTime.value / 60 >= 1) {
-//         minutes.value = "0" + Math.trunc(testingTime.value / 60);
-//         if (testingTime.value - Math.trunc(testingTime.value / 60) * 60 < 10) {
-//           seconds.value =
-//             "0" + (testingTime.value - Math.trunc(testingTime.value / 60) * 60);
-//         } else {
-//           seconds.value =
-//             testingTime.value - Math.trunc(testingTime.value / 60) * 60;
-//         }
-//       }
-//       emit("change-time", testingTime.value);
-//       console.log(testingTime.value);
-//       timer();
-//     }, 1000);
-//   }
-// };
 </script>
 
 <template>
@@ -95,8 +69,8 @@ onUnmounted(() => clearInterval(timer));
 
 <style>
 .test-timer {
-  padding: 16px 32px;
   margin-bottom: 4vh;
+  padding: 16px 32px;
   display: flex;
   justify-content: center;
   align-items: center;

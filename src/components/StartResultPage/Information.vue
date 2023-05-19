@@ -24,7 +24,7 @@ const props = defineProps({
 }
 
 .information__text {
-  width: 60vw;
+  width: 50vw;
   padding: 24px;
   font: 1.5em Times New Roman;
   text-align: center;

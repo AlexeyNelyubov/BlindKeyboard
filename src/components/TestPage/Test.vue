@@ -9,7 +9,20 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["check-one-symbol", "finish-test"]);
+const emit = defineEmits({
+  "check-one-symbol": (curentIndex, numberOfUnvalidSymbols) => {
+    if (
+      typeof curentIndex === "number" &&
+      typeof numberOfUnvalidSymbols === "number"
+    ) {
+      return true;
+    } else {
+      console.warn("Invalid change-time event payload!");
+      return false;
+    }
+  },
+  "finish-test": null,
+});
 
 const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
