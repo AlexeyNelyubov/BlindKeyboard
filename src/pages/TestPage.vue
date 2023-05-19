@@ -20,6 +20,7 @@ const startNewTest = async () => {
   randomText.value = await getRandomTextFromAjax();
   isNewTest.value = true;
 };
+
 startNewTest();
 
 const finishTest = () => {
