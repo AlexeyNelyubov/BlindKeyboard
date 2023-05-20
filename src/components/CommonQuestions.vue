@@ -38,7 +38,12 @@ useEventListener(document, "click", (event) => {
   <Transition name="common-questions">
     <div v-show="showQuestion" class="common-questions">
       <div class="common-questions-payload">
-        <div @click="showQuestion = false">Вопросы о скорости печати.</div>
+        <div
+          @click="showQuestion = false"
+          class="common-questions-payload__title"
+        >
+          Вопросы о скорости печати.
+        </div>
         <ul>
           <li
             v-for="question in allQuestions1"
@@ -88,29 +93,32 @@ useEventListener(document, "click", (event) => {
 }
 .common-questions-payload {
   width: 50vw;
-  font: 1.7rem cursive;
+}
+.common-questions-payload__title {
+  font: 2.4rem cursive;
   color: #fff;
   cursor: pointer;
 }
 
 .common-questions-payload__one-question {
-  margin-top: 24px;
-  cursor: pointer;
+  margin-top: 2.4rem;
+  font: 2.4rem Times New Roman;
+  color: #fff;
 }
 
 .show-question-btn {
   position: absolute;
   bottom: 2vh;
   right: 2vw;
-  padding: 12px 24px;
-  font: 1.5rem cursive;
+  padding: 1.2rem 2.4rem;
+  font: 2.4rem cursive;
   text-align: center;
   text-decoration: none;
   color: #fff;
   background-color: #000;
   border: 1px solid #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1rem #fff;
   cursor: pointer;
 }
 </style>

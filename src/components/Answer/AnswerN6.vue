@@ -5,14 +5,16 @@ const dropDown = ref(false);
 
 <template>
   <div class="question">
-    <p @click="dropDown = !dropDown">Скорость печати 100 зн./мин хорошая?</p>
+    <p @click="dropDown = !dropDown" class="question__question">
+      Скорость печати 100 зн./мин хорошая?
+    </p>
     <div v-show="dropDown" class="question__answer">
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Зависит от возраста. Например, для детей начальной и средней школы это
         хорошая скорость. Для старшей школы и взрослых скорость 100 зн./мин
         считается низкой.
       </p>
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Пройди курс печати и твоя скорость набора увеличится.
       </p>
     </div>
@@ -21,18 +23,19 @@ const dropDown = ref(false);
 
 <style>
 .question {
-  font: 1.5rem Times New Roman;
-  color: #fff;
   border-bottom: 1px solid #fff;
+}
+.question__question {
+  cursor: pointer;
 }
 
 .question__answer {
-  margin: 12px 0;
-  font: 1.2rem Times New Roman;
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
-.paragraph {
-  margin: 16px 0;
+.question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>

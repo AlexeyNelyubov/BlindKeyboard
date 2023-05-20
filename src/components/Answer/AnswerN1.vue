@@ -5,18 +5,18 @@ const dropDown = ref(false);
 
 <template>
   <div class="question">
-    <p @click="dropDown = !dropDown">
+    <p @click="dropDown = !dropDown" class="question__question">
       Как проверить скорость набора текста онлайн?
     </p>
     <div v-show="dropDown" class="question__answer">
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Скорость печати можно проверить на нашем сайте, для этого нужно просто
         пройти тест.
       </p>
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Во время прохождении теста необходимо быть внимательным.
       </p>
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         При опечатке подсчет символов останавливается, но таймер продолжит
         отсчёт и нужно как можно скорее ввести корректный символ.
       </p>
@@ -26,17 +26,19 @@ const dropDown = ref(false);
 
 <style>
 .question {
-  color: #fff;
   border-bottom: 1px solid #fff;
+}
+.question__question {
+  cursor: pointer;
 }
 
 .question__answer {
-  margin: 12px 0;
-  font: 1.2rem Times New Roman;
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
-.paragraph {
-  margin: 16px 0;
+.question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>

@@ -78,11 +78,11 @@ const startNewTest = () => {
 
 <style>
 .test-main-testing-params {
-  margin-left: 24px;
+  margin-left: 2.4rem;
   border: 1px solid #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #fff;
-  padding: 24px;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 2rem #fff;
+  padding: 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,24 +91,24 @@ const startNewTest = () => {
 }
 
 .test-main-testing-params__item {
-  margin-bottom: 12px;
-  font: 2rem Times New Roman;
+  margin-bottom: 1.2rem;
+  font: 2.6rem Times New Roman;
   color: #fff;
 }
 
 .test-main-testing-params__item-value {
-  margin-bottom: 44px;
-  font: 2rem Times New Roman;
+  margin-bottom: 4.4rem;
+  font: 3.6rem Times New Roman;
   color: #fff;
 }
 
 .test-main-new-test-button {
-  padding: 8px 40px;
-  font: 1.5rem cursive;
+  padding: 0.8rem 4rem;
+  font: 2rem cursive;
   color: #7b7b7b;
   text-align: center;
   text-decoration: none;
   border: none;
-  border-radius: 12px;
+  border-radius: 1.2rem;
 }
 </style>

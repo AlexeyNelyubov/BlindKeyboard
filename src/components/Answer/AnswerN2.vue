@@ -5,16 +5,16 @@ const dropDown = ref(false);
 
 <template>
   <div class="question">
-    <p @click="dropDown = !dropDown">
+    <p @click="dropDown = !dropDown" class="question__question">
       Как измеряется скорость и точность печати?
     </p>
     <div v-show="dropDown" class="question__answer">
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Cкорость печати измеряется в знаках (без опечаток) в минуту. Знаком
         считается любой символ, включая пробелы. Учитываются только правильно
         набранные символы.
       </p>
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Точность печати — это процент правильно введенных символов к общему
         количеству символов в тексте.
       </p>
@@ -24,18 +24,19 @@ const dropDown = ref(false);
 
 <style>
 .question {
-  font: 1.5rem Times New Roman;
-  color: #fff;
   border-bottom: 1px solid #fff;
+}
+.question__question {
+  cursor: pointer;
 }
 
 .question__answer {
-  margin: 12px 0;
-  font: 1.2rem Times New Roman;
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
-.paragraph {
-  margin: 16px 0;
+.question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>

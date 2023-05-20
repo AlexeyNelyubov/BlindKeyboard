@@ -5,14 +5,16 @@ const dropDown = ref(false);
 
 <template>
   <div class="question">
-    <p @click="dropDown = !dropDown">Какая средняя скорость слепой печати?</p>
+    <p @click="dropDown = !dropDown" class="question__question">
+      Какая средняя скорость слепой печати?
+    </p>
     <div v-show="dropDown" class="question__answer">
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Средняя скорость печати составляет всего 207 знаков в минуту. Чтобы
         улучшить навыки набора текста и научиться печатать, как профессионал,
         нужно постоянно тренироваться.
       </p>
-      <p class="paragraph">
+      <p class="question__answer-paragraph">
         Запомни: практика, практика и еще раз практика. Исследования показали,
         что постоянная практика помогает превысить средний показатель скорости
         печати в три раза. Проверить скорость печати онлайн ты можешь вместе с
@@ -24,18 +26,19 @@ const dropDown = ref(false);
 
 <style>
 .question {
-  font: 1.5rem Times New Roman;
-  color: #fff;
   border-bottom: 1px solid #fff;
+}
+.question__question {
+  cursor: pointer;
 }
 
 .question__answer {
-  margin: 12px 0;
-  font: 1.2rem Times New Roman;
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
-.paragraph {
-  margin: 16px 0;
+.question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>

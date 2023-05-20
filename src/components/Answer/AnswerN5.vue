@@ -5,9 +5,11 @@ const dropDown = ref(false);
 
 <template>
   <div class="question">
-    <p @click="dropDown = !dropDown">Какая самая большая скорость печати?</p>
+    <p @click="dropDown = !dropDown" class="question__question">
+      Какая самая большая скорость печати?
+    </p>
     <div v-show="dropDown" class="question__answer">
-      <p>
+      <p class="question__answer-paragraph">
         1080 знаков за одну минуту на электрической пишущей машинке IBM — рекорд
         по скорости набора текста, установленный Стеллой Паджунас в 1946 году.
         Сейчас чемпионкой по набору текста на клавиатуре на английском языке
@@ -15,8 +17,7 @@ const dropDown = ref(false);
         скорость печати до 1060 знаков в минуту на клавиатуре Дворака —
         упрощенном варианте привычной нам раскладки QWERTY.
       </p>
-      <br />
-      <p>
+      <p class="question__answer-paragraph">
         Шон Врона установил очередной рекорд на чемпионате Ultimate Typing
         Championship — 1280 знаков в минуту. Врона также неофициально побил
         рекорд Блэкборн по скорости набора текста, поддерживая скорость 870
@@ -29,18 +30,19 @@ const dropDown = ref(false);
 
 <style>
 .question {
-  font: 1.5rem Times New Roman;
-  color: #fff;
   border-bottom: 1px solid #fff;
+}
+.question__question {
+  cursor: pointer;
 }
 
 .question__answer {
-  margin: 12px 0;
-  font: 1.2rem Times New Roman;
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
-.paragraph {
-  margin: 16px 0;
+.question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>

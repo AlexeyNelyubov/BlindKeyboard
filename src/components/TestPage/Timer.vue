@@ -60,23 +60,25 @@ onUnmounted(() => clearInterval(timer));
 <template>
   <div class="test-timer">
     <span>Время</span>
-    <div style="margin-left: 10px; width: 30px">{{ minutes }}</div>
+    <div style="margin-left: 1rem; width: 3rem">
+      {{ minutes }}
+    </div>
     <span>:</span>
-    <div style="width: 38px">{{ seconds }}</div>
+    <div style="width: 3rem" class="test-timer__text">{{ seconds }}</div>
   </div>
 </template>
 
 <style>
 .test-timer {
   margin-bottom: 4vh;
-  padding: 16px 32px;
+  padding: 1.6rem 3.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 1.5rem cursive;
+  font: 2.4rem cursive;
   color: #fff;
   border: 1px solid #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 2rem #fff;
 }
 </style>

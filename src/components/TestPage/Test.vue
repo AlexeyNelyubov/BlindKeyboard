@@ -67,11 +67,11 @@ useEventListener(document, "keypress", (event) => {
 <style>
 .test-main-random-text {
   width: 60vw;
-  padding: 24px;
-  font: 1.5rem Times New Roman;
+  padding: 2.4rem;
+  font: 2.6rem Times New Roman;
   border: 1px solid v-bind(colorForValidateSymbol);
-  border-radius: 12px;
-  box-shadow: 0 0 20px v-bind(colorForValidateSymbol);
+  border-radius: 1.2rem;
+  box-shadow: 0 0 2rem v-bind(colorForValidateSymbol);
 }
 
 .validSymbol {
