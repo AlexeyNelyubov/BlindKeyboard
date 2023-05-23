@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
   <div class="information">
     <div class="information__text">
-      <p v-for="item in props.textForShow">
+      <p v-for="item in props.textForShow" :key="item.id">
         {{ item }}
       </p>
     </div>
