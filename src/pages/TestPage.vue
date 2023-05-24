@@ -19,6 +19,9 @@ const accuracy = ref(0);
 const startNewTest = async () => {
   randomText.value = await getRandomTextFromAjax();
   isNewTest.value = true;
+  testingTime.value = 0;
+  curentIndex.value = 0;
+  numberOfUnvalidSymbols.value = 0;
 };
 
 startNewTest();

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useEventListener } from "/src/composable/useEventListener.js";
 
 const props = defineProps({
@@ -28,6 +28,16 @@ const curentIndex = ref(0);
 const isCurentSymbolValid = ref(true);
 const numberOfUnvalidSymbols = ref(0);
 const colorForValidateSymbol = ref("#fff");
+
+watch(
+  () => props.randomText,
+  () => {
+    curentIndex.value = 0;
+    isCurentSymbolValid.value = true;
+    numberOfUnvalidSymbols.value = 0;
+    colorForValidateSymbol.value = "#fff";
+  }
+);
 
 useEventListener(document, "keypress", (event) => {
   if (event.key === props.randomText[curentIndex.value]) {
