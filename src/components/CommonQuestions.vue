@@ -104,6 +104,7 @@ useEventListener(document, "click", (event) => {
   margin-top: 2.4rem;
   font: 2.4rem Times New Roman;
   color: #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .show-question-btn {
@@ -120,5 +121,20 @@ useEventListener(document, "click", (event) => {
   border-radius: 1.2rem;
   box-shadow: 0 0 1rem #fff;
   cursor: pointer;
+}
+
+//style for child components Answer1-8
+.single-question__question {
+  cursor: pointer;
+}
+
+.single-question__answer {
+  font: 1.8rem Times New Roman;
+  margin: 1.2rem 0;
+  text-align: justify;
+}
+
+.single-question__answer-paragraph {
+  margin: 1.6rem 0;
 }
 </style>
