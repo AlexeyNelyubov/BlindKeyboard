@@ -64,7 +64,7 @@ onUnmounted(() => clearInterval(timer));
       {{ minutes }}
     </div>
     <span>:</span>
-    <div style="width: 3rem" class="test-timer__text">{{ seconds }}</div>
+    <div style="width: 3rem">{{ seconds }}</div>
   </div>
 </template>
 
@@ -76,7 +76,6 @@ onUnmounted(() => clearInterval(timer));
   justify-content: center;
   align-items: center;
   font: 2.4rem cursive;
-  color: #fff;
   border: 1px solid #fff;
   border-radius: 1.2rem;
   box-shadow: 0 0 2rem #fff;

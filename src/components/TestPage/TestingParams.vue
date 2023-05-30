@@ -79,36 +79,33 @@ const startNewTest = () => {
 <style>
 .test-main-testing-params {
   margin-left: 2.4rem;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
   padding: 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  text-align: justify;
+  border: 1px solid #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 2rem #fff;
 }
 
 .test-main-testing-params__item {
   margin-bottom: 1.2rem;
   font: 2.6rem Times New Roman;
-  color: #fff;
 }
 
 .test-main-testing-params__item-value {
   margin-bottom: 4.4rem;
   font: 3.6rem Times New Roman;
-  color: #fff;
 }
 
 .test-main-new-test-button {
   padding: 0.8rem 4rem;
   font: 2rem cursive;
-  color: #7b7b7b;
-  text-align: center;
-  text-decoration: none;
+  color: #000;
   border: none;
   border-radius: 1.2rem;
+  background-color: #fff;
+  cursor: pointer;
 }
 </style>

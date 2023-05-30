@@ -17,6 +17,5 @@ const props = defineProps({
 .title {
   margin-bottom: 4vh;
   font: 3.2rem cursive;
-  color: #fff;
 }
 </style>

@@ -27,7 +27,6 @@ const props = defineProps({
   width: 50vw;
   padding: 2.4rem;
   font: 2.6rem Times New Roman;
-  color: #fff;
   text-align: center;
   border: 1px solid #fff;
   border-radius: 1.2rem;

@@ -86,6 +86,7 @@ useEventListener(document, "keypress", (event) => {
 
 .validSymbol {
   background-color: #37ff00;
+  color: #000;
 }
 
 .unvalidSymbol {

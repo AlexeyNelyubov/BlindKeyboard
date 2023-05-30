@@ -22,9 +22,9 @@ defineEmits({ "start-new-test": null });
   font: 2.4rem cursive;
   color: #fff;
   text-align: center;
-  text-decoration: none;
   background-color: #4caf50;
   border: none;
   border-radius: 1.2rem;
+  cursor: pointer;
 }
 </style>

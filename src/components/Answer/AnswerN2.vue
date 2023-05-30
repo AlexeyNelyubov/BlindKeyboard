@@ -23,7 +23,7 @@ const dropDown = ref(false);
 </template>
 
 <style></style>
-//style for component located in parent component CommonQuestions.vue
+//style for component located in parent component AnswerN1.vue
 <!-- <style>
 .question {
   border-bottom: 1px solid #fff;

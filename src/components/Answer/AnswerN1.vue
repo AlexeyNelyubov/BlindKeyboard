@@ -24,5 +24,21 @@ const dropDown = ref(false);
   </div>
 </template>
 
-<style></style>
-//style for component located in parent component CommonQuestions.vue
+<style>
+.single-question__question {
+  margin-top: 2.4rem;
+  font: 2.4rem Times New Roman;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+
+.single-question__answer {
+  font: 1.8rem Times New Roman;
+  margin: 2.4rem 0;
+}
+
+.single-question__answer-paragraph {
+  margin: 1.2rem 0;
+  text-align: justify;
+}
+</style>
