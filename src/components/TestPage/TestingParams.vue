@@ -59,25 +59,26 @@ const startNewTest = () => {
 </script>
 
 <template>
-  <div class="test-main-testing-params">
-    <div>
-      <p class="test-main-testing-params__item">Скорость</p>
-      <p class="test-main-testing-params__item-value">
+  <div class="testing-params">
+    <div class="testing-params__items">
+      <p class="testing-params__item">Скорость</p>
+      <p class="testing-params__item-value">
         {{ speed }} <span style="font-size: 0.6em">зн./мин</span>
       </p>
-      <p class="test-main-testing-params__item">Точность</p>
-      <p class="test-main-testing-params__item-value">
+      <p class="testing-params__item">Точность</p>
+      <p class="testing-params__item-value">
         {{ accuracy }} <span style="font-size: 0.6em">%</span>
       </p>
     </div>
-    <button class="test-main-new-test-button" @click="startNewTest">
+    <button class="testing-params__new-test-button" @click="startNewTest">
       Заново!
     </button>
   </div>
 </template>
 
 <style>
-.test-main-testing-params {
+.testing-params {
+  width: 15vw;
   margin-left: 2.4rem;
   padding: 2.4rem;
   display: flex;
@@ -89,17 +90,25 @@ const startNewTest = () => {
   box-shadow: 0 0 2rem #fff;
 }
 
-.test-main-testing-params__item {
-  margin-bottom: 1.2rem;
-  font: 2.6rem Times New Roman;
+.testing-params__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.test-main-testing-params__item-value {
-  margin-bottom: 4.4rem;
-  font: 3.6rem Times New Roman;
+.testing-params__item {
+  margin-bottom: 2.4rem;
+  /* font: 2.6rem Times New Roman; */
+  font: 2.4rem Verdana, sans-serif;
 }
 
-.test-main-new-test-button {
+.testing-params__item-value {
+  margin-bottom: 4.8rem;
+  /* font: 3.6rem Times New Roman; */
+  font: 3.4rem Verdana, sans-serif;
+}
+
+.testing-params__new-test-button {
   padding: 0.8rem 4rem;
   font: 2rem cursive;
   color: #000;

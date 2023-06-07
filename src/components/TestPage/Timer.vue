@@ -71,7 +71,7 @@ onUnmounted(() => clearInterval(timer));
 <style>
 .test-timer {
   margin-bottom: 4vh;
-  padding: 1.6rem 3.2rem;
+  padding: 1.2rem 2.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
