@@ -52,7 +52,8 @@ watch([speed, accuracy], () => {
 });
 
 const startNewTest = () => {
-  const btn = document.querySelector(".test-main-new-test-button");
+  console.log("1");
+  const btn = document.querySelector(".testing-params__new-test-button");
   btn.blur();
   emit("start-new-test");
 };

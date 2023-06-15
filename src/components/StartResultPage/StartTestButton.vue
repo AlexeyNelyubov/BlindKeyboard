@@ -1,17 +1,10 @@
 <script setup>
-const props = defineProps({
-  textForButton: {
-    type: String,
-    required: true,
-  },
-});
-
 defineEmits({ "start-new-test": null });
 </script>
 
 <template>
   <button @click="$emit('start-new-test')" class="btn-start-test">
-    {{ props.textForButton }}
+    <slot></slot>
   </button>
 </template>
 

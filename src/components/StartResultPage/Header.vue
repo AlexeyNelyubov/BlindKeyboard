@@ -1,15 +1,8 @@
-<script setup>
-const props = defineProps({
-  textForHeader: {
-    type: String,
-    required: true,
-  },
-});
-</script>
+<script setup></script>
 
 <template>
   <header class="title">
-    {{ props.textForHeader }}
+    <slot></slot>
   </header>
 </template>
 

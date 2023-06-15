@@ -10,17 +10,17 @@ const router = useRouter();
 
 <template>
   <div class="index">
-    <Header :textForHeader="'Привет! Хочешь проверить свою скорость печати?'" />
+    <Header>Привет! Хочешь проверить свою скорость печати?</Header>
     <Information
-      :textForShow="[
-        'Набери небольшой текст и узнай сколько знаков в минуту ты печатаешь на русском языке.',
-        'Проходи тест, сколько хочешь. Ограничений нет.',
-      ]"
-    />
-    <StartTestButton
-      @start-new-test="router.push({ name: 'test' })"
-      :textForButton="'Начать тест!'"
-    />
+      ><p>
+        Набери небольшой текст и узнай сколько знаков в минуту ты печатаешь на
+        русском языке.
+      </p>
+      <p>Проходи тест, сколько хочешь. Ограничений нет.</p>
+    </Information>
+    <StartTestButton @start-new-test="router.push({ name: 'test' })"
+      >Начать тест!</StartTestButton
+    >
     <CommonQuestions />
   </div>
 </template>
