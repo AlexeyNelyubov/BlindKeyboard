@@ -1,27 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { useEventListener } from "/src/composable/useEventListener.js";
-import AnswerN1 from "/src/components/Answer/AnswerN1.vue";
-import AnswerN2 from "/src/components/Answer/AnswerN2.vue";
-import AnswerN3 from "/src/components/Answer/AnswerN3.vue";
-import AnswerN4 from "/src/components/Answer/AnswerN4.vue";
-import AnswerN5 from "/src/components/Answer/AnswerN5.vue";
-import AnswerN6 from "/src/components/Answer/AnswerN6.vue";
-import AnswerN7 from "/src/components/Answer/AnswerN7.vue";
-import AnswerN8 from "/src/components/Answer/AnswerN8.vue";
+import AllAnswers from "/src/components/Answer/AllAnswers.vue";
 
 const showQuestion = ref(false);
-
-const allQuestions1 = [
-  AnswerN1,
-  AnswerN2,
-  AnswerN3,
-  AnswerN4,
-  AnswerN5,
-  AnswerN6,
-  AnswerN7,
-  AnswerN8,
-];
 
 useEventListener(document, "click", (event) => {
   if (
@@ -44,15 +26,7 @@ useEventListener(document, "click", (event) => {
         >
           Вопросы о скорости печати.
         </div>
-        <ul>
-          <li
-            v-for="question in allQuestions1"
-            :key="question.id"
-            class="common-questions-payload__one-question"
-          >
-            <component :is="question"></component>
-          </li>
-        </ul>
+        <AllAnswers />
       </div>
     </div>
   </Transition>

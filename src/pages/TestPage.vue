@@ -4,11 +4,11 @@ import { useRouter } from "vue-router";
 import Timer from "/src/components/TestPage/Timer.vue";
 import Test from "/src/components/TestPage/Test.vue";
 import TestingParams from "/src/components/TestPage/TestingParams.vue";
-import { getRandomTextFromAjax } from "/src/helpers/getRandomTextFromAjax.js";
-import { timer } from "@/composable/Timer.js";
+import { getRandomTextFromAjax } from "@/helpers/getRandomTextFromAjax.js";
+import { useTimer } from "@/composable/useTimer.js";
 
 const router = useRouter();
-const timeComposable = timer();
+const timer = useTimer();
 
 const randomText = ref("");
 const curentIndex = ref(0);
@@ -18,7 +18,7 @@ const accuracy = ref(0);
 
 const startNewTest = async () => {
   randomText.value = await getRandomTextFromAjax();
-  timeComposable.startNewTest();
+  timer.startNewTest();
   curentIndex.value = 0;
   numberOfUnvalidSymbols.value = 0;
 };
@@ -35,7 +35,7 @@ const finishTest = () => {
 
 <template>
   <div class="test">
-    <Timer :testingTime="timeComposable.testingTime.value" />
+    <Timer :testingTime="timer.testingTime.value" />
     <main class="test__main">
       <Test
         :randomText="randomText"
@@ -48,7 +48,7 @@ const finishTest = () => {
         @finish-test="finishTest"
       />
       <TestingParams
-        :testingTime="timeComposable.testingTime.value"
+        :testingTime="timer.testingTime.value"
         :numderOfCheckedSymbols="curentIndex"
         :numberOfUnvalidSymbols="numberOfUnvalidSymbols"
         @start-new-test="startNewTest"

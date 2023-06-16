@@ -1,6 +1,6 @@
 import {onUnmounted, ref} from 'vue'
 
-export const timer = ()=> {
+export const useTimer = ()=> {
     const testingTime = ref(0)
     const timer = setInterval(()=>{
         testingTime.value ++
