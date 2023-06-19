@@ -80,15 +80,15 @@ const startNewTest = () => {
 <style>
 .testing-params {
   width: 15vw;
-  margin-left: 2.4rem;
-  padding: 2.4rem;
+  margin-left: calc(var(--margin-padding) * 2);
+  padding: calc(var(--margin-padding) * 2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
+  border: var(--border-width) var(--border-style) var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 2rem var(--text-color);
 }
 
 .testing-params__items {
@@ -98,24 +98,22 @@ const startNewTest = () => {
 }
 
 .testing-params__item {
-  margin-bottom: 2.4rem;
-  /* font: 2.6rem Times New Roman; */
-  font: 2.4rem Verdana, sans-serif;
+  margin-bottom: var(--margin-padding);
+  font: calc(var(--text-size) * 1.1) var(--sign-style);
 }
 
 .testing-params__item-value {
-  margin-bottom: 4.8rem;
-  /* font: 3.6rem Times New Roman; */
-  font: 3.4rem Verdana, sans-serif;
+  margin-bottom: calc(var(--margin-padding) * 2.2);
+  font: calc(var(--text-size) * 1.5) var(--sign-style);
 }
 
 .testing-params__new-test-button {
-  padding: 0.8rem 4rem;
-  font: 2rem cursive;
-  color: #000;
+  padding: calc(var(--margin-padding) - 0.2rem) calc(var(--margin-padding) * 3);
+  font: calc(var(--text-size) - 0.4rem) var(--sign-style);
+  color: var(--background-color);
   border: none;
-  border-radius: 1.2rem;
-  background-color: #fff;
+  border-radius: var(--border-radius);
+  background-color: var(--text-color);
   cursor: pointer;
 }
 </style>

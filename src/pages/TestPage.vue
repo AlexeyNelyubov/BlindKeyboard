@@ -69,7 +69,7 @@ const finishTest = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .test__main {

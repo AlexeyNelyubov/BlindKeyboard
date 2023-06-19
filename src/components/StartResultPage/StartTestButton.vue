@@ -10,14 +10,14 @@ defineEmits({ "start-new-test": null });
 
 <style>
 .btn-start-test {
-  margin-top: 4vh;
-  padding: 1.2rem 2.4rem;
-  font: 2.4rem cursive;
-  color: #fff;
+  margin-top: var(--vertical-margin-between-block);
+  padding: var(--margin-padding) calc(var(--margin-padding) * 2);
+  font: var(--text-size) var(--sign-style);
+  color: var(--text-color);
   text-align: center;
   background-color: #4caf50;
   border: none;
-  border-radius: 1.2rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 </style>

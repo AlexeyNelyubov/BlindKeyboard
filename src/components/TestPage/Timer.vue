@@ -50,14 +50,14 @@ watch(
 
 <style>
 .test-timer {
-  margin-bottom: 4vh;
-  padding: 1.2rem 2.4rem;
+  margin-bottom: var(--vertical-margin-between-block);
+  padding: var(--margin-padding) calc(var(--margin-padding) * 2);
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 2.4rem cursive;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 2rem #fff;
+  font: var(--text-size) var(--sign-style);
+  border: var(--border-width) var(--border-style) var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 2rem var(--text-color);
 }
 </style>

@@ -30,6 +30,6 @@ const route = useRoute();
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  color: var(--text-color);
 }
 </style>

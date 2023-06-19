@@ -77,26 +77,25 @@ useEventListener(document, "keypress", (event) => {
 <style>
 .test-main-random-text {
   width: 60vw;
-  padding: 2.4rem;
-  /* font: 2.6rem Times New Roman; */
-  font: 2.4rem Verdana, sans-serif;
+  padding: calc(var(--margin-padding) * 2);
+  font: var(--text-size) var(--text-style);
   letter-spacing: 0.5px;
-  border: 1px solid v-bind(colorForValidateSymbol);
-  border-radius: 1.2rem;
+  border: var(--border-width) var(--border-style) v-bind(colorForValidateSymbol);
+  border-radius: var(--border-radius);
   box-shadow: 0 0 2rem v-bind(colorForValidateSymbol);
 }
 
 .validSymbol {
   background-color: #37ff00;
-  color: #000;
+  color: var(--background-color);
 }
 
 .unvalidSymbol {
   background-color: #ff0000;
-  color: #000;
+  color: var(--background-color);
 }
 .checkedSymbol {
-  color: #fff;
+  color: var(--text-color);
 }
 
 .uncheckedSymbol {

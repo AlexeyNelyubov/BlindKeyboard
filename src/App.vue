@@ -10,6 +10,6 @@ import { RouterView } from "vue-router";
 
 <style>
 .app-main {
-  background-color: #000;
+  background-color: var(--background-color);
 }
 </style>

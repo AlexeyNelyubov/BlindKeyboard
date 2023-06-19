@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { useEventListener } from "/src/composable/useEventListener.js";
-import AllAnswers from "/src/components/Answer/AllAnswers.vue";
+import { useEventListener } from "@/composable/useEventListener.js";
+import AllQuestions from "@/components/Questions/AllQuestions.vue";
 
 const showQuestion = ref(false);
 
@@ -26,7 +26,7 @@ useEventListener(document, "click", (event) => {
         >
           Вопросы о скорости печати.
         </div>
-        <AllAnswers />
+        <AllQuestions />
       </div>
     </div>
   </Transition>
@@ -69,7 +69,7 @@ useEventListener(document, "click", (event) => {
   width: 50vw;
 }
 .common-questions-payload__title {
-  font: 2.4rem cursive;
+  font: var(--text-size) var(--sign-style);
   cursor: pointer;
 }
 
@@ -77,15 +77,15 @@ useEventListener(document, "click", (event) => {
   position: absolute;
   bottom: 2vh;
   right: 2vw;
-  padding: 1.2rem 2.4rem;
-  font: 2.4rem cursive;
+  padding: var(--margin-padding) calc(var(--margin-padding) * 2);
+  font: var(--text-size) var(--sign-style);
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  background-color: #000;
-  border: 1px solid #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 1rem #fff;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--border-width) --border-style var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 1rem var(--text-color);
   cursor: pointer;
 }
 </style>

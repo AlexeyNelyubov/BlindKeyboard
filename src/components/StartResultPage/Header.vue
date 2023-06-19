@@ -8,7 +8,7 @@
 
 <style>
 .title {
-  margin-bottom: 4vh;
-  font: 3.2rem cursive;
+  margin-bottom: var(--vertical-margin-between-block);
+  font: calc(var(--text-size) * 1.25) var(--sign-style);
 }
 </style>
